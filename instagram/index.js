@@ -36,6 +36,10 @@ const previewFile = () => {
       const random = Math.floor(Math.random() * uniqueArray.length);
       console.log('Winner is: ' + uniqueArray[random]); //RANDOM WINNER
 
+      // const regexWinner = text.match(//)
+      //VM213:18 1saira_vitoria12
+      console.log(uniqueArray[random]);
+
       content.innerText = 'Winner is: ' + uniqueArray[random];
       confetti({
         particleCount: 500,

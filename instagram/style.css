@@ -94,6 +94,12 @@ code {
   font-size: 1.5em;
 }
 
+.btn__clipboard:active {
+  transition: all 200ms;
+  background-color: #000001;
+  color: #fffefe;
+}
+
 textarea {
   display: none;
 }
