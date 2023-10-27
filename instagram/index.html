@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Instagram Giveaway 🥳</title>
+    <link rel="shortcut icon" href="./logo.webp" type="image/x-icon" />
+    <link rel="stylesheet" href="style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/styles/atom-one-dark.min.css"
+    />
+    <script
+      src="https://kit.fontawesome.com/1cf483120b.js"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      defer
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAi0RCj8aLdKFX-cvYkW6kDveuaUlMnpes&libraries=places&callback=initMap"
+    ></script>
+    <script src="./index.js" defer></script>
+  </head>
+  <body>
+    <header><h1>🎉 Instagram Giveaway 🎉</h1></header>
+    <!-- /*---------------------------------UPLOAD LOG---------------------------------*/ -->
+    <main>
+      <section class="container dropzone">
+        <input type="file" onchange="previewFile()" />
+        <section id="preview" class="content"></section>
+        <button type="button" class="btn" onclick="window.location.reload()">
+          Click for another winner
+        </button>
+      </section>
+    </main>
+
+    <!-- /*---------------------------------CODE SECTION---------------------------------*/ -->
+    <section>
+      <h2>Copy this code and insert it on the console</h2>
+      <textarea id="text" name="" id="" cols="30" rows="10">
+        //!IMPORTANTE: TIENES QUE INICIAR SESIÓN EN INSTAGRAM
+          let commentsPanel = document.querySelector('main >div>div>div').children[1];
+          let commentsContainer = commentsPanel.querySelector('div').children[2];
+          let loadingSvg = document.querySelector('svg[aria-label="Cargando..."]');
+          clear();
+          const isSvgLoading = setInterval(() => {
+            let loadingSvgTop = loadingSvg.getBoundingClientRect().top;
+            if (loadingSvgTop != 0) {
+              commentsContainer.scrollTo({
+                top: commentsContainer.scrollHeight,
+                behavior: 'smooth',
+              });
+              console.log('%c⏳Cargando comentarios...⏳', 'color:yellow');
+            } else {
+              console.clear();
+              let anchors = commentsContainer.querySelectorAll('div > a');
+              anchors.forEach(function (anchor) {
+                console.log(anchor.textContent);
+                return anchor;
+              });
+              clearInterval(isSvgLoading);
+            }
+          }, 1000);
+      </textarea>
+
+      <pre>
+        <code >
+          //!IMPORTANTE: TIENES QUE INICIAR SESIÓN EN INSTAGRAM
+          let commentsPanel = document.querySelector('main >div>div>div').children[1];
+          let commentsContainer = commentsPanel.querySelector('div').children[2];
+          let loadingSvg = document.querySelector('svg[aria-label="Cargando..."]');
+          clear();
+          const isSvgLoading = setInterval(() => {
+            let loadingSvgTop = loadingSvg.getBoundingClientRect().top;
+            if (loadingSvgTop != 0) {
+              commentsContainer.scrollTo({
+                top: commentsContainer.scrollHeight,
+                behavior: 'smooth',
+              });
+              console.log('%c⏳Cargando comentarios...⏳', 'color:yellow');
+            } else {
+              console.clear();
+              let anchors = commentsContainer.querySelectorAll('div > a');
+              anchors.forEach(function (anchor) {
+                console.log(anchor.textContent);
+                return anchor;
+              });
+              clearInterval(isSvgLoading);
+            }
+          }, 1000);
+        </code>
+      </pre>
+      <button class="btn btn__clipboard" onclick="copyToClipboard()">
+        Copy to Clipboard!
+      </button>
+    </section>
+    <footer class="footer">Made by Alan Garcia 🚀</footer>
+
+    <div class="container">
+      <h3>Upload your File :</h3>
+      <div class="drag-area">
+        <div class="icon">
+          <i class="fas fa-images"></i>
+        </div>
+        <span class="header">Drag & Drop</span>
+        <span class="header">or <span class="button">browse</span></span>
+        <input type="file" hidden />
+        <span class="support">Supports: JPEG, JPG, PNG</span>
+      </div>
+      <div>
+        <button class="download">Download</button>
+      </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/highlight.min.js"></script>
+    <script>
+      hljs.highlightAll();
+    </script>
+  </body>
+</html>
