@@ -14,6 +14,7 @@
       src="https://kit.fontawesome.com/1cf483120b.js"
       crossorigin="anonymous"
     ></script>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.0/dist/confetti.browser.min.js"></script>
     <script
       defer
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAi0RCj8aLdKFX-cvYkW6kDveuaUlMnpes&libraries=places&callback=initMap"
@@ -24,8 +25,14 @@
     <header><h1>🎉 Instagram Giveaway 🎉</h1></header>
     <!-- /*---------------------------------UPLOAD LOG---------------------------------*/ -->
     <main>
-      <section class="container dropzone">
-        <input type="file" onchange="previewFile()" />
+      <section class="container container__file dropzone">
+        <h3>Upload your File :</h3>
+        <div class="drag-area">
+          <div class="icon">
+            <i class="fa-solid fa-file"></i>
+          </div>
+        </div>
+        <input type="file" onchange="previewFile()" width="1" />
         <section id="preview" class="content"></section>
         <button type="button" class="btn" onclick="window.location.reload()">
           Click for another winner
@@ -34,7 +41,7 @@
     </main>
 
     <!-- /*---------------------------------CODE SECTION---------------------------------*/ -->
-    <section>
+    <section class="container__code">
       <h2>Copy this code and insert it on the console</h2>
       <textarea id="text" name="" id="" cols="30" rows="10">
         //!IMPORTANTE: TIENES QUE INICIAR SESIÓN EN INSTAGRAM
@@ -94,22 +101,6 @@
       </button>
     </section>
     <footer class="footer">Made by Alan Garcia 🚀</footer>
-
-    <div class="container">
-      <h3>Upload your File :</h3>
-      <div class="drag-area">
-        <div class="icon">
-          <i class="fas fa-images"></i>
-        </div>
-        <span class="header">Drag & Drop</span>
-        <span class="header">or <span class="button">browse</span></span>
-        <input type="file" hidden />
-        <span class="support">Supports: JPEG, JPG, PNG</span>
-      </div>
-      <div>
-        <button class="download">Download</button>
-      </div>
-    </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/highlight.min.js"></script>
     <script>

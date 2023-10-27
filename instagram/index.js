@@ -1,6 +1,30 @@
 //TODO: https://dev.to/shubhamtiwari909/drag-and-drop-file-using-javascript-2h99
 //TODO: Include the drag&drop file
 
+confetti({
+  particleCount: 500,
+  startVelocity: 150,
+  angle: 60,
+  origin: {
+    x: -0.5,
+    // since they fall down, start a bit higher than random
+    y: 1.5,
+  },
+  ticks: 1000,
+});
+
+confetti({
+  particleCount: 500,
+  startVelocity: 150,
+  angle: 120,
+  origin: {
+    x: 1.5,
+    // since they fall down, start a bit higher than random
+    y: 1.5,
+  },
+  ticks: 1000,
+});
+
 const previewFile = () => {
   const content = document.querySelector('.content');
   const [file] = document.querySelector('input[type=file]').files;
@@ -104,4 +128,11 @@ function copyToClipboard() {
 
 const handleForm = () => {
   let form = document.getElementById('form');
+};
+
+const dropArea = document.querySelector('.drag-area');
+let button = dropArea.querySelector('.button');
+let input = dropArea.querySelector('input');
+button.onclick = () => {
+  input.onclick();
 };
