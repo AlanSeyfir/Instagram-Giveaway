@@ -1,3 +1,4 @@
+//TODO Fix bug when ñoadingSvg doesn't exist
 //IMPORTANTE: TIENES QUE INICIAR SESIÓN EN INSTAGRAM
 let commentsPanel = document.querySelector('main >div>div>div').children[1];
 let commentsContainer = commentsPanel.querySelector('div').children[2];

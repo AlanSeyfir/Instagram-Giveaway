@@ -1,6 +1,10 @@
 //TODO: https://dev.to/shubhamtiwari909/drag-and-drop-file-using-javascript-2h99
 //TODO: Include the drag&drop file
 
+//TODO Include instructions in how to use the program in README & webpage
+
+//INspiration : https://www.giveawayjet.com/es
+
 const previewFile = () => {
   const content = document.querySelector('.content');
   const [file] = document.querySelector('input[type=file]').files;
@@ -42,8 +46,8 @@ const previewFile = () => {
 
       content.innerText = 'Winner is: ' + uniqueArray[random];
       confetti({
-        particleCount: 500,
-        startVelocity: 150,
+        particleCount: 700,
+        startVelocity: 250,
         angle: 60,
         origin: {
           x: -0.5,
@@ -54,15 +58,15 @@ const previewFile = () => {
       });
 
       confetti({
-        particleCount: 500,
-        startVelocity: 150,
+        particleCount: 700,
+        startVelocity: 250,
         angle: 120,
         origin: {
           x: 1.5,
           // since they fall down, start a bit higher than random
           y: 1.5,
         },
-        ticks: 1000,
+        ticks: 800,
       });
     },
     false
