@@ -1,10 +1,3 @@
-//TODO: https://dev.to/shubhamtiwari909/drag-and-drop-file-using-javascript-2h99
-//TODO: Include the drag&drop file
-
-//TODO Include instructions in how to use the program in README & webpage
-
-//INspiration : https://www.giveawayjet.com/es
-
 const previewFile = () => {
   const content = document.querySelector('.content');
   const [file] = document.querySelector('input[type=file]').files;
@@ -13,12 +6,7 @@ const previewFile = () => {
   reader.addEventListener(
     'load',
     () => {
-      // content.innerText = reader.result;
       text = reader.result;
-
-      //TODO: Replace the VM... thing
-      //TODO: NTH, multiple winners
-      // Maybe gonna use slice or splice to remove the VM thing
       let first = text.replaceAll('VM4740:25', '');
       let second = first.replaceAll('VM303:14 Console was cleared', '');
       const regex = second.match(/\w+(.*)/g);
@@ -35,13 +23,9 @@ const previewFile = () => {
       let stringArray = splitWords.map(JSON.stringify);
       let uniqueStringArray = new Set(stringArray);
       let uniqueArray = Array.from(uniqueStringArray, JSON.parse);
-      //console.log(uniqueArray); //SHOW NO REPEATED ARRAY
 
       const random = Math.floor(Math.random() * uniqueArray.length);
-      console.log('Winner is: ' + uniqueArray[random]); //RANDOM WINNER
-
-      // const regexWinner = text.match(//)
-      //VM213:18 1saira_vitoria12
+      console.log('Winner is: ' + uniqueArray[random]);
       console.log(uniqueArray[random]);
 
       content.innerText = 'Winner is: ' + uniqueArray[random];
@@ -51,7 +35,6 @@ const previewFile = () => {
         angle: 60,
         origin: {
           x: -0.5,
-          // since they fall down, start a bit higher than random
           y: 1.5,
         },
         ticks: 1000,
@@ -63,7 +46,6 @@ const previewFile = () => {
         angle: 120,
         origin: {
           x: 1.5,
-          // since they fall down, start a bit higher than random
           y: 1.5,
         },
         ticks: 800,
