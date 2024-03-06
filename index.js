@@ -1,33 +1,127 @@
-import { readFile } from 'fs/promises';
-import { JSDOM } from 'jsdom';
-import path from 'path';
-import { fileURLToPath } from 'url';
+const previewFile = () => {
+  const content = document.querySelector('.content');
+  const [file] = document.querySelector('input[type=file]').files;
+  const reader = new FileReader();
 
-const YOU = 'somosdereven';
+  reader.addEventListener(
+    'load',
+    () => {
+      text = reader.result;
+      let first = text.replaceAll('VM4740:25', '');
+      let second = first.replaceAll('VM303:14 Console was cleared', '');
+      const regex = second.match(/\w+(.*)/g);
 
-const filepath = path.join(path.dirname(fileURLToPath(import.meta.url)), 'source.html');
-const html = await readFile(filepath);
-const { document } = new JSDOM(html).window;
+      function chunk(ary, len) {
+        let i = 0,
+          res = [];
+        for (let i = 0; i < ary.length; i += len)
+          res.push(ary.slice(i, i + len));
+        return res;
+      }
+      let splitWords = chunk(regex, 1);
 
-/* This finds a "target" class based on the element holding the original poster's name
-(i can't hardcode a class list to target because they're randomly generated and could change in the future,
-so this will futureproof it just in case) */
-let targetClass;
-for (const span of document.querySelectorAll('span')) {
-  if (span.textContent === YOU) {
-    targetClass = [...span.classList].map((c) => `.${c}`).join('');
-    break;
+      let stringArray = splitWords.map(JSON.stringify);
+      let uniqueStringArray = new Set(stringArray);
+      let uniqueArray = Array.from(uniqueStringArray, JSON.parse);
+
+      const random = Math.floor(Math.random() * uniqueArray.length);
+      console.log('Winner is: ' + uniqueArray[random]);
+      console.log(uniqueArray[random]);
+
+      content.innerText = 'Winner is: ' + uniqueArray[random];
+      confetti({
+        particleCount: 700,
+        startVelocity: 250,
+        angle: 60,
+        origin: {
+          x: -0.5,
+          y: 1.5,
+        },
+        ticks: 1000,
+      });
+
+      confetti({
+        particleCount: 700,
+        startVelocity: 250,
+        angle: 120,
+        origin: {
+          x: 1.5,
+          y: 1.5,
+        },
+        ticks: 800,
+      });
+    },
+    false
+  );
+
+  if (file) {
+    reader.readAsText(file);
   }
+};
+
+const dropzone = document.querySelector('.dropzone');
+const setActive = (dropzone, active = true) => {
+  const hasActiveClass = dropzone.classList.contains('active');
+
+  if (active && !hasActiveClass) {
+    return dropzone.classList.add('active');
+  }
+
+  if (!active && hasActiveClass) {
+    return dropzone.classList.remove('active');
+  }
+};
+
+dropzone.addEventListener('dragcenter', (e) => {
+  e.preventDefault();
+  setActive(dropzone);
+});
+
+dropzone.addEventListener('dragover', (e) => {
+  e.preventDefault();
+  setActive(dropzone);
+});
+
+dropzone.addEventListener('dragleave', (e) => {
+  e.preventDefault();
+  setActive(dropzone, false);
+});
+
+dropzone.addEventListener('drop', (e) => {
+  e.preventDefault();
+  setActive(dropzone, false);
+
+  [files] = e.dataTransger;
+  handleLogFile(files);
+});
+
+const handleLogFile = (files) => {
+  let validFiles = [...files].filter((file) => [''].includes(file.type));
+
+  uploadFiles(validFiles);
+};
+
+// const uploadFiles = async (files) => {
+//   const formatData =
+// }
+
+function copyToClipboard() {
+  let copyText = document.getElementById('text');
+  copyText.select();
+  copyText.setSelectionRange(0, 99999);
+
+  navigator.clipboard.writeText(copyText.value);
 }
 
-if (!targetClass) {
-  throw new Error('Couldn\'t find the target class?! That wasn\'t supposed to happen...');
-}
+//https://www.kirupa.com/about/whatiskirupa.htm
 
-// Get all participants and pick a winner!
-const users = [...document.querySelectorAll(targetClass)].map((s) => s.textContent);
-const uniqueUsers = [...new Set(users)];
-const winner = uniqueUsers[Math.floor(Math.random() * uniqueUsers.length)];
+const handleForm = () => {
+  let form = document.getElementById('form');
+};
 
-console.log(`Your winner is @${winner}!`);
-console.log(`(picked randomly from ${uniqueUsers.length} participants!)`);
+const dropArea = document.querySelector('.drag-area');
+let button = dropArea.querySelector('.button');
+let input = dropArea.querySelector('input');
+button.onclick = () => {
+  input.onclick();
+};
